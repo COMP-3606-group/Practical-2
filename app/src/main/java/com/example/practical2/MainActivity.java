@@ -3,10 +3,12 @@ package com.example.practical2;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.ToggleButton;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton imageButton;
     private ImageView imageView;
     private EditText editText;
+    private ToggleButton toggleButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,5 +26,13 @@ public class MainActivity extends AppCompatActivity {
         imageButton = (ImageButton) findViewById(R.id.imageButton);
         editText = (EditText) findViewById(R.id.editTextTextMultiLine);
         imageView = (ImageView) findViewById(R.id.imageView);
+    }
+
+    public void onImageButtionClick(View v) {
+        //SOME EVENT...
+    }
+
+    public void onSpinnerClick(View v) {
+
     }
 }
