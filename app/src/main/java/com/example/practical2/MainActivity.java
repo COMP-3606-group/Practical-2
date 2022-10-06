@@ -26,13 +26,29 @@ public class MainActivity extends AppCompatActivity {
         imageButton = (ImageButton) findViewById(R.id.imageButton);
         editText = (EditText) findViewById(R.id.editTextTextMultiLine);
         imageView = (ImageView) findViewById(R.id.imageView);
+        toggleButton = (ToggleButton) findViewById(R.id.toggleButton);
     }
 
-    public void onImageButtionClick(View v) {
+    public void onImageButtonClick(View v) {
         //SOME EVENT...
+        editText.setText("");
+        spinner.setSelection(0);
+    }
+    public void toggleButtonClick(View v) {
+        if (toggleButton.isSelected()){
+            toggleButton.setSelected(false);
+            imageView.setVisibility(View.GONE);
+        }
+        else{
+            toggleButton.setSelected(true);
+            imageView.setVisibility(View.VISIBLE);
+        }
+
+
     }
 
     public void onSpinnerClick(View v) {
+        //GET SPINNER ITEM
 
     }
 }
