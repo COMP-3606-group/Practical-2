@@ -9,9 +9,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.ToggleButton;
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
 
+    private HashMap<String,Integer> items = new HashMap<String,Integer>();
     private Spinner spinner;
     private ImageButton imageButton;
     private ImageView imageView;
@@ -27,12 +29,18 @@ public class MainActivity extends AppCompatActivity {
         editText = (EditText) findViewById(R.id.editTextTextMultiLine);
         imageView = (ImageView) findViewById(R.id.imageView);
         toggleButton = (ToggleButton) findViewById(R.id.toggleButton);
+        items.put("Select Item",0);
+        items.put("Shirt",1);
+        items.put("Pants",2);
+        items.put("Socks",3);
+
     }
 
     public void onImageButtonClick(View v) {
         //SOME EVENT...
         editText.setText("");
         spinner.setSelection(0);
+        toggleButtonClick(toggleButton);
     }
     public void toggleButtonClick(View v) {
         if (toggleButton.isSelected()){
@@ -44,11 +52,11 @@ public class MainActivity extends AppCompatActivity {
             imageView.setVisibility(View.VISIBLE);
         }
 
-
     }
 
     public void onSpinnerClick(View v) {
-        //GET SPINNER ITEM
+            String spinnerText = spinner.getSelectedItem().toString();
+            editText.setText(spinnerText + " :" + items.get(spinnerText));
 
     }
 }

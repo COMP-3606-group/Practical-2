@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">PRACTICAL2</string>
+    <string-array name="items">
+        <item>Select Item</item>
+        <item>Shirt</item>
+        <item>Pants</item>
+        <item>Socks</item>
+    </string-array>
 </resources>
