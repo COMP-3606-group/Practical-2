@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imageView;
     private EditText editText;
     private ToggleButton toggleButton;
+    private String item;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         editText = (EditText) findViewById(R.id.editTextTextMultiLine);
         imageView = (ImageView) findViewById(R.id.imageView);
         toggleButton = (ToggleButton) findViewById(R.id.toggleButton);
+        spinner.setOnItemSelectedListener(new CustomOnItemSelectedListener());
         items.put("Select Item",0);
         items.put("Shirt",1);
         items.put("Pants",2);
@@ -43,20 +46,47 @@ public class MainActivity extends AppCompatActivity {
         toggleButtonClick(toggleButton);
     }
     public void toggleButtonClick(View v) {
-        if (toggleButton.isSelected()){
-            toggleButton.setSelected(false);
+        if (toggleButton.isChecked()){
             imageView.setVisibility(View.GONE);
         }
         else{
-            toggleButton.setSelected(true);
             imageView.setVisibility(View.VISIBLE);
         }
 
     }
 
-    public void onSpinnerClick(View v) {
-            String spinnerText = spinner.getSelectedItem().toString();
-            editText.setText(spinnerText + " :" + items.get(spinnerText));
+    class CustomOnItemSelectedListener implements AdapterView.OnItemSelectedListener {
 
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                item = parent.getItemAtPosition(position).toString();
+                if(item.compareTo("Select Item") != 0){
+                    editText.setText("ITEM: " + item+ "\n" + "QUANTITY: " + items.get(item));
+                    if(item.compareTo("Socks") == 0){
+                        imageView.setImageResource(R.drawable.socks);
+                        imageButton.setImageResource(R.drawable.socks);
+                    }
+                    if(item.compareTo("Shirt") == 0){
+                        imageView.setImageResource(R.drawable.shirt);
+                        imageButton.setImageResource(R.drawable.shirt);
+
+                    }
+                    if(item.compareTo("Pants") == 0){
+                        imageView.setImageResource(R.drawable.pants);
+                        imageButton.setImageResource(R.drawable.pants);
+                    }
+                }
+                else{
+                    imageView.setImageResource(R.drawable.ic_launcher_background);
+                    imageButton.setImageResource(R.drawable.ic_launcher_background);
+                }
+
+
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
     }
 }
